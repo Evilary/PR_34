@@ -5,13 +5,89 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DragAndDrop_Chernyshkov"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        MinHeight="450" 
-        MinWidth="800"
-        Height="450" 
-        Width="800"
-        MouseUp="ImageUp">
-    <Grid MouseUp="ImageUp">
-        <Image MouseUp="ImageUp" MouseDown="ImageDown" Width="100" Height="100" VerticalAlignment="top" HorizontalAlignment="left" Source="/Images/ic.png"/>
+        Title="DragAndDrop"
+        MinHeight="520"
+        MinWidth="900"
+        Height="520"
+        Width="900"
+        MouseUp="image_MouseUp">
+    <Grid Background="#E9E9E9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Text="Реальный размер" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock x:Name="tbRealSize" Text="0 x 0" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock Text="В масштабе" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock x:Name="tbScaleSize" Text="0 x 0" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                <TextBlock Text="Получится на выходе" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock x:Name="tbCropSize" Text="250 x 280" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" Margin="15" BorderBrush="#4B4B4B" BorderThickness="8" CornerRadius="8" Background="#9B9B9B">
+            <Canvas x:Name="canvasArea" ClipToBounds="True" MouseUp="image_MouseUp">
+                <Image x:Name="image"
+                       Canvas.Left="300"
+                       Canvas.Top="60"
+                       Width="318"
+                       Height="350"
+                       MouseDown="image_MouseDown"
+                       MouseUp="image_MouseUp"
+                       Source="pack://application:,,,/DragAndDrop_Chernyshkov;component/Images/ic.png"/>
+
+                <Border x:Name="cropFrame"
+                        Canvas.Left="323"
+                        Canvas.Top="80"
+                        Width="250"
+                        Height="280"
+                        BorderBrush="#4AA3FF"
+                        BorderThickness="2"
+                        IsHitTestVisible="False"/>
+            </Canvas>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="15,0,15,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="bthClear"
+                    Grid.Column="0"
+                    Margin="100,10,20,10"
+                    Content="ОЧИСТИТЬ"
+                    FontSize="26"
+                    Foreground="White"
+                    Background="#FF8E00"
+                    BorderBrush="#C56C00"
+                    Click="ClearImage"/>
+
+            <Button x:Name="bthCrop"
+                    Grid.Column="1"
+                    Margin="20,10,100,10"
+                    Content="ОБРЕЗАТЬ"
+                    FontSize="26"
+                    Foreground="White"
+                    Background="#37A700"
+                    BorderBrush="#2A8000"
+                    Click="CropImage"/>
+        </Grid>
     </Grid>
 </Window>
