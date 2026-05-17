@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DragAndDrop_Chernyshkov
 {
@@ -29,12 +30,12 @@ namespace DragAndDrop_Chernyshkov
 
         private void DispatcherTimer_Tick(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            image.Margin = new Thickness(Mouse.GetPosition(this).X - 25, Mouse.GetPosition(this).Y - 25, 0, 0);
         }
 
         private void image_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            
         }
 
         private void image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
