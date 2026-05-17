@@ -35,12 +35,12 @@ namespace DragAndDrop_Chernyshkov
 
         private void image_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            dispatcherTimer.Stop();
         }
 
         private void image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            dispatcherTimer.Start();
         }
     }
 }
