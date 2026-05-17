@@ -20,5 +20,15 @@ namespace DragAndDrop_Chernyshkov
         {
             InitializeComponent();
         }
+
+        private void image_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

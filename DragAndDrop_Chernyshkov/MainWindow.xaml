@@ -9,8 +9,9 @@
         MinHeight="450" 
         MinWidth="800"
         Height="450" 
-        Width="800">
-    <Grid>
-        <Image Width="100" Height="100" VerticalAlignment="top" HorizontalAlignment="left" Source="/Images/ic.png"/>
+        Width="800"
+        MouseUp="ImageUp">
+    <Grid MouseUp="ImageUp">
+        <Image MouseUp="ImageUp" MouseDown="ImageDown" Width="100" Height="100" VerticalAlignment="top" HorizontalAlignment="left" Source="/Images/ic.png"/>
     </Grid>
 </Window>
