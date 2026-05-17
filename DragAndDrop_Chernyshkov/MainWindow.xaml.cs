@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace DragAndDrop_Chernyshkov
 {
@@ -16,9 +17,19 @@ namespace DragAndDrop_Chernyshkov
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public DispatcherTimer dispatcherTimer = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
+
+            dispatcherTimer.Tick += DispatcherTimer_Tick; // вызываем функцию по истечению таймера
+            dispatcherTimer.Interval = new System.TimeSpan(0, 0, 0, 0, 1000 / 60); // задаём интервал (60 кадрров).
+        }
+
+        private void DispatcherTimer_Tick(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void image_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
