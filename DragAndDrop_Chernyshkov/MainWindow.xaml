@@ -44,22 +44,21 @@
         <Border Grid.Row="1" Margin="15" BorderBrush="#4B4B4B" BorderThickness="8" CornerRadius="8" Background="#9B9B9B">
             <Canvas x:Name="canvasArea" ClipToBounds="True" MouseUp="image_MouseUp">
                 <Image x:Name="image"
-                       Canvas.Left="300"
-                       Canvas.Top="60"
-                       Width="318"
-                       Height="350"
-                       MouseDown="image_MouseDown"
-                       MouseUp="image_MouseUp"
+                       Canvas.Left="312"
+                       Canvas.Top="11"
+                       Width="272"
+                       Height="297"
                        Source="pack://application:,,,/DragAndDrop_Chernyshkov;component/Images/ic.png"/>
 
                 <Border x:Name="cropFrame"
                         Canvas.Left="323"
-                        Canvas.Top="80"
+                        Canvas.Top="20"
                         Width="250"
                         Height="280"
                         BorderBrush="#4AA3FF"
                         BorderThickness="2"
-                        IsHitTestVisible="False"/>
+                        MouseDown="image_MouseDown"
+                        MouseUp="image_MouseUp" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Canvas>
         </Border>
 
