@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\ic-2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ic-2.png" />
     <Resource Include="Images\ic.png" />
   </ItemGroup>
 

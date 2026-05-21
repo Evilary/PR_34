@@ -13,7 +13,11 @@ namespace DragAndDrop_Chernyshkov
     {
         public DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private bool isDrag = false;
+        private bool isResize = false;
         private Point deltaPoint;
+        private Point resizeStartMouse;
+        private double resizeStartWidth;
+        private double resizeStartHeight;
         private double startLeft = 300;
         private double startTop = 60;
         private double startWidth = 318;
@@ -33,21 +37,35 @@ namespace DragAndDrop_Chernyshkov
 
         private void DispatcherTimer_Tick(object? sender, EventArgs e)
         {
-            if (!isDrag) return;
-
             Point position = Mouse.GetPosition(canvasArea);
-            Canvas.SetLeft(cropFrame, position.X - deltaPoint.X);
-            Canvas.SetTop(cropFrame, position.Y - deltaPoint.Y);
+
+            if (isDrag)
+            {
+                Canvas.SetLeft(cropFrame, position.X - deltaPoint.X);
+                Canvas.SetTop(cropFrame, position.Y - deltaPoint.Y);
+            }
+
+            if (isResize)
+            {
+                double nextWidth = resizeStartWidth + (position.X - resizeStartMouse.X);
+                double nextHeight = resizeStartHeight + (position.Y - resizeStartMouse.Y);
+
+                if (nextWidth < 60) nextWidth = 60;
+                if (nextHeight < 60) nextHeight = 60;
+
+                cropFrame.Width = nextWidth;
+                cropFrame.Height = nextHeight;
+                ShowSizeText();
+            }
         }
 
         private void image_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             isDrag = false;
+            isResize = false;
             dispatcherTimer.Stop();
-            if (sender is UIElement element)
-            {
-                element.ReleaseMouseCapture();
-            }
+            cropFrame.ReleaseMouseCapture();
+            resizeHandle.ReleaseMouseCapture();
             ShowSizeText();
         }
 
@@ -58,6 +76,23 @@ namespace DragAndDrop_Chernyshkov
             Point mousePosition = e.GetPosition(canvasArea);
             deltaPoint.X = mousePosition.X - Canvas.GetLeft(cropFrame);
             deltaPoint.Y = mousePosition.Y - Canvas.GetTop(cropFrame);
+
+            if (sender is UIElement element)
+            {
+                element.CaptureMouse();
+            }
+            dispatcherTimer.Start();
+        }
+
+        private void resizeHandle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            isResize = true;
+            isDrag = false;
+            e.Handled = true;
+
+            resizeStartMouse = e.GetPosition(canvasArea);
+            resizeStartWidth = cropFrame.Width;
+            resizeStartHeight = cropFrame.Height;
 
             if (sender is UIElement element)
             {

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DragAndDrop_Chernyshkov"
         mc:Ignorable="d"
         Title="DragAndDrop"
-        MinHeight="520"
+        MinHeight="620"
         MinWidth="900"
         Height="520"
         Width="900"
@@ -44,21 +44,34 @@
         <Border Grid.Row="1" Margin="15" BorderBrush="#4B4B4B" BorderThickness="8" CornerRadius="8" Background="#9B9B9B">
             <Canvas x:Name="canvasArea" ClipToBounds="True" MouseUp="image_MouseUp">
                 <Image x:Name="image"
-                       Canvas.Left="312"
-                       Canvas.Top="11"
+                       Canvas.Left="291"
+                       Canvas.Top="73"
                        Width="272"
-                       Height="297"
-                       Source="pack://application:,,,/DragAndDrop_Chernyshkov;component/Images/ic.png"/>
+                       Height="298"
+                       Source="pack://application:,,,/DragAndDrop_Chernyshkov;component/Images/ic-2.png" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                 <Border x:Name="cropFrame"
-                        Canvas.Left="323"
-                        Canvas.Top="20"
-                        Width="250"
+                        Canvas.Left="291"
+                        Canvas.Top="69"
+                        Width="272"
                         Height="280"
                         BorderBrush="#4AA3FF"
                         BorderThickness="2"
                         MouseDown="image_MouseDown"
-                        MouseUp="image_MouseUp" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        MouseUp="image_MouseUp"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                    <Border x:Name="resizeHandle"
+                            Width="14"
+                            Height="14"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,-7,-7"
+                            Background="#4AA3FF"
+                            Cursor="SizeNWSE"
+                            MouseDown="resizeHandle_MouseDown"
+                            MouseUp="image_MouseUp"/>
+                </Border>
             </Canvas>
         </Border>
 
